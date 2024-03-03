@@ -26,5 +26,5 @@ public class Customer {
     @Column(name = "contact")
     private int contact;
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy =  "student")
-    private List<Transaction> reservations = new ArrayList<>();
+    private List<Transactions> reservations = new ArrayList<>();
 }

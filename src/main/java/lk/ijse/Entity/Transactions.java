@@ -12,7 +12,7 @@ import java.sql.Date;
 @ToString
 @Entity
 @Table(name = "transaction")
-public class Transaction {
+public class Transactions {
     @Id
     @Column(name = "trans_id",length = 50)
     private String id;

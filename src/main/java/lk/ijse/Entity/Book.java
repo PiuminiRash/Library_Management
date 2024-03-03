@@ -22,5 +22,5 @@ public class Book {
     @Column(name = "book_type")
     private String type;
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy =  "room")
-    private List<Transaction> reservations = new ArrayList<>();
+    private List<Transactions> reservations = new ArrayList<>();
 }

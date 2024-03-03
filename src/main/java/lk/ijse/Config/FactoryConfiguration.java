@@ -2,7 +2,7 @@ package lk.ijse.Config;
 
 import lk.ijse.Entity.Book;
 import lk.ijse.Entity.Customer;
-import lk.ijse.Entity.Transaction;
+import lk.ijse.Entity.Transactions;
 import lk.ijse.Entity.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -27,7 +27,7 @@ public class FactoryConfiguration {
         configuration
                 .addAnnotatedClass(Customer.class)
                 .addAnnotatedClass(Book.class)
-                .addAnnotatedClass(Transaction.class)
+                .addAnnotatedClass(Transactions.class)
                 .addAnnotatedClass(User.class);
         sessionFactory=configuration.setProperties(properties).buildSessionFactory();
     }
