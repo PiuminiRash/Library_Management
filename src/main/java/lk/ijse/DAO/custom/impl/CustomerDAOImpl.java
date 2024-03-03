@@ -80,7 +80,17 @@ public class CustomerDAOImpl implements CustomerDAO {
 
     @Override
     public Customer getItem(String id) {
-        return null;
+        try {
+            Transaction transaction = session.beginTransaction();
+            Customer customer = session.get(Customer.class,id);
+            transaction.commit();
+            return customer;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            session.close();
+        }
     }
 
     @Override
