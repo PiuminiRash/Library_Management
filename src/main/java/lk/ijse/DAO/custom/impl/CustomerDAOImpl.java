@@ -1,4 +1,53 @@
 package lk.ijse.DAO.custom.impl;
 
-public class CustomerDAOImpl {
+import lk.ijse.Config.FactoryConfiguration;
+import lk.ijse.DAO.custom.CustomerDAO;
+import lk.ijse.Entity.Customer;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import java.io.Serializable;
+import java.util.List;
+
+public class CustomerDAOImpl implements CustomerDAO {
+    Session session = FactoryConfiguration.getInstance().getSession();
+    @Override
+    public boolean save(Customer dto) {
+        try {
+            Transaction transaction = session.beginTransaction();
+            Serializable save = (Serializable) session.save(dto);
+            transaction.commit();
+            return save != null;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            session.close();
+        }
+    }
+
+    @Override
+    public boolean update(Customer dto) {
+        return false;
+    }
+
+    @Override
+    public boolean delete(String id) {
+        return false;
+    }
+
+    @Override
+    public List<Customer> getAll() {
+        return null;
+    }
+
+    @Override
+    public Customer getItem(String id) {
+        return null;
+    }
+
+    @Override
+    public String getNextId() {
+        return null;
+    }
 }
