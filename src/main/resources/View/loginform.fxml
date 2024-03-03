@@ -1,11 +1,88 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane prefHeight="467.0" prefWidth="688.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.Controller.LoginFormController">
+<AnchorPane prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.Controller.LoginFormController">
    <children>
-      <Text layoutX="71.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login Form Controller" />
+      <ImageView fitHeight="800.0" fitWidth="1200.0" layoutX="253.0" layoutY="273.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <image>
+            <Image url="@../Assets/Wallpaper.jpg" />
+         </image>
+      </ImageView>
+      <AnchorPane layoutX="874.0" layoutY="148.0" opacity="0.83" prefHeight="602.0" prefWidth="367.0" style="-fx-background-color: white; -fx-background-radius: 15;" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="148.0">
+         <children>
+            <Text layoutX="105.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" text="LOGIN">
+               <font>
+                  <Font name="System Bold" size="51.0" />
+               </font>
+            </Text>
+            <Line endX="167.5" layoutX="171.0" layoutY="229.0" startX="-100.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" />
+            <Line endX="167.5" layoutX="151.0" layoutY="312.0" startX="-100.0" AnchorPane.leftAnchor="50.5" />
+            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="52.0" layoutY="198.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Assets/Account.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="52.0" layoutY="281.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Assets/password.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="288.0" layoutY="281.0" onDragDetected="#imgView" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Assets/View.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="287.0" layoutY="281.0" onDragDetected="#imgHide" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Assets/Hide.png" />
+               </image>
+            </ImageView>
+            <TextField fx:id="txtMail" layoutX="92.0" layoutY="197.0" prefHeight="31.0" prefWidth="225.0" />
+            <PasswordField fx:id="txtPassword" layoutX="92.0" layoutY="280.0" />
+            <JFXButton layoutX="73.0" layoutY="387.0" onAction="#btnSingInOnAction" prefHeight="31.0" prefWidth="225.0" style="-fx-background-color: #f1c40f; -fx-background-radius: 30;" text="SING IN">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </JFXButton>
+            <JFXButton layoutX="73.0" layoutY="489.0" onAction="#btnSingUpOnAction" prefHeight="31.0" prefWidth="225.0" style="-fx-background-radius: 30;" text="SING UP">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </JFXButton>
+            <Text layoutX="106.0" layoutY="470.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Don't have an account ?" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="26.0" layoutY="-49.0" opacity="0.83" prefHeight="297.0" prefWidth="678.0" style="-fx-background-color: white; -fx-background-radius: 70;">
+         <children>
+            <ImageView fitHeight="125.0" fitWidth="140.0" layoutX="55.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Assets/Logo.jpeg" />
+               </image>
+            </ImageView>
+            <Text layoutX="210.0" layoutY="145.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DREAM PARADISE">
+               <font>
+                  <Font name="System Bold" size="37.0" />
+               </font>
+            </Text>
+            <Text layoutX="106.0" layoutY="214.0" strokeType="OUTSIDE" strokeWidth="0.0" text="&quot;A reader lives a thousand lives before he dies. The man who never reads lives only one.&quot;" wrappingWidth="466.0000057220459">
+               <font>
+                  <Font name="System Italic" size="19.0" />
+               </font>
+            </Text>
+            <Text layoutX="457.0" layoutY="260.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- George R.R. Martin">
+               <font>
+                  <Font name="System Bold Italic" size="15.0" />
+               </font>
+            </Text>
+         </children></AnchorPane>
    </children>
 </AnchorPane>
