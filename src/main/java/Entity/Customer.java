@@ -1,0 +1,31 @@
+package Entity;
+
+import jakarta.persistence.*;
+import lombok.*;
+
+import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+@ToString
+@Entity
+@Table(name = "customer")
+public class Customer {
+    @Id
+    @Column(name = "cus_id",length = 50)
+    private String id;
+    @Column(name = "cus_name")
+    private String name;
+    @Column(name = "NIC")
+    private String nic;
+    @Column(name = "address")
+    private String address;
+    @Column(name = "contact")
+    private int contact;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy =  "student")
+    private List<Transaction> reservations = new ArrayList<>();
+}
