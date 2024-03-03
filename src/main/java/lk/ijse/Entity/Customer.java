@@ -1,9 +1,8 @@
-package Entity;
+package lk.ijse.Entity;
 
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 

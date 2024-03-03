@@ -1,6 +1,6 @@
-package Config;
+package lk.ijse.Config;
 
-import Entity.User;
+import lk.ijse.Entity.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;

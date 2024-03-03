@@ -1,4 +1,4 @@
-package Controller;
+package lk.ijse.Controller;
 
 public class LoginFormController {
 }
