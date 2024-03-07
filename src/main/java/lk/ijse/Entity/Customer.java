@@ -25,6 +25,6 @@ public class Customer {
     private String address;
     @Column(name = "contact")
     private int contact;
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy =  "student")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy =  "customer")
     private List<Transactions> reservations = new ArrayList<>();
 }
