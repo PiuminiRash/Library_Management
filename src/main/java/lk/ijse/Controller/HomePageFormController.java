@@ -6,13 +6,12 @@ import javafx.fxml.FXML;
 import lk.ijse.Controller.util.Navigation;
 import lk.ijse.Controller.util.Rout;
 
-import java.io.IOException;
-
 public class HomePageFormController {
     @FXML
     private AnchorPane settingPane;
 
     private static int round=0;
+
     @FXML
     void btnSettingOnAction(ActionEvent event) {
         switch (round) {
