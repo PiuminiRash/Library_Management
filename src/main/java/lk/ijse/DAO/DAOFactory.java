@@ -1,13 +1,15 @@
 package lk.ijse.DAO;
 
+import lk.ijse.DAO.custom.impl.UserDAOImpl;
+
 public class DAOFactory {
-    private static DAOFactory factory;
+    private static DAOFactory daofactory;
 
     private DAOFactory() {
     }
 
-    public static DAOFactory getInstance() {
-        return factory == null ? new DAOFactory() : factory;
+    public static DAOFactory getDaofactory() {
+        return (daofactory==null)?daofactory=new DAOFactory():daofactory;
     }
 
     public enum DAOTypes {
@@ -17,7 +19,7 @@ public class DAOFactory {
     public SuperDAO getDAO (DAOTypes daoTypes) {
         switch (daoTypes) {
             case USER:
-                return null;
+                return new UserDAOImpl();
             case CUSTOMER:
                 return null;
             case BOOK:

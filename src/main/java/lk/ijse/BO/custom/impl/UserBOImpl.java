@@ -7,7 +7,7 @@ import lk.ijse.DTO.UserDTO;
 import lk.ijse.Entity.User;
 
 public class UserBOImpl implements UserBO {
-    UserDAO userDAO = (UserDAO) DAOFactory.getInstance().getDAO(DAOFactory.DAOTypes.USER);
+    UserDAO userDAO = (UserDAO)DAOFactory.getDaofactory().getDAO(DAOFactory.DAOTypes.USER);
     @Override
     public boolean saveUser(UserDTO userDTO) {
         return userDAO.save(new User(
