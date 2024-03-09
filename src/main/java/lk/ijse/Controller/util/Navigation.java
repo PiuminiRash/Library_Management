@@ -15,19 +15,19 @@ public class Navigation {
         Stage window = (Stage) Navigation.root.getScene().getWindow();
         switch (rout) {
             case LOGIN:
-                initUi("logInForm.fxml");
+                initUi("loginform.fxml");
                 break;
             case SING_UP:
-                initUi("singUpForm.fxml");
+                initUi("singupform.fxml");
                 break;
             case DASH_BOARD:
-                initUi("dashboardForm.fxml");
+                initUi("dashboardform.fxml");
                 break;
             case HOME:
-                initUi("homeForm.fxml");
+                initUi("homepageform.fxml");
                 break;
             case SETTING:
-                initUi("settingForm.fxml");
+                initUi("settingPageForm.fxml");
                 break;
             case BOOK:
                 initUi("BookForm.fxml");
