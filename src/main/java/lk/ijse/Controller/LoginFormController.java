@@ -56,11 +56,7 @@ public class LoginFormController implements Initializable {
                 GlobUserName = txtMail.getText();
 
                 if (txtPassword.getText().equals(isUser.getPassword())) {
-                    try {
-                        Navigation.navigation(Rout.DASH_BOARD,root);
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
+                    Navigation.navigation(Rout.DASHBOARD,root);
                 } else {
                     Validation.shakeLine(linePassword);
                 }
@@ -73,11 +69,7 @@ public class LoginFormController implements Initializable {
 
     @FXML
     void btnSingUpOnAction(ActionEvent event) {
-        try {
-            Navigation.navigation(Rout.SING_UP,root);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        Navigation.navigation(Rout.SIGNUP,root);
     }
 
     @FXML

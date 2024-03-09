@@ -31,49 +31,29 @@ public class DashBoardFormController implements Initializable {
     @FXML
     void btnHomeOnAction(ActionEvent event) {
         Thread thread = new Thread(() -> Platform.runLater(() -> {
-            try {
-                Navigation.navigation(Rout.HOME,rootNode);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+            Navigation.navigation(Rout.HOME,rootNode);
         }));
         thread.start();
     }
 
     @FXML
     void btnBookOnAction(ActionEvent event) {
-        try {
-            Navigation.navigation(Rout.BOOK,rootNode);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        Navigation.navigation(Rout.BOOK,rootNode);
     }
 
     @FXML
     void btnCustomerOnAction(ActionEvent event) {
-        try {
-            Navigation.navigation(Rout.CUSTOMER,rootNode);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        Navigation.navigation(Rout.CUSTOMER,rootNode);
     }
 
     @FXML
     void btnLogoutOnAction(ActionEvent event) {
-        try {
-            Navigation.navigation(Rout.LOGIN,root);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        Navigation.navigation(Rout.LOGIN,root);
     }
 
     @FXML
     void btnTransactionOnAction(ActionEvent event) {
-        try {
-            Navigation.navigation(Rout.TRANSACTION,rootNode);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        Navigation.navigation(Rout.TRANSACTION,rootNode);
     }
 
     private void loadHome () {

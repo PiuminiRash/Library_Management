@@ -15,19 +15,15 @@ public class HomePageFormController {
     private static int round=0;
     @FXML
     void btnSettingOnAction(ActionEvent event) {
-        try {
-            switch (round) {
-                case 0:
-                    Navigation.navigation(Rout.SETTING,settingPane);
-                    round = 1;
-                    break;
-                case 1 :
-                    settingPane.getChildren().clear();
-                    round = 0;
-                    break;
-            }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        switch (round) {
+            case 0:
+                Navigation.navigation(Rout.SETTING,settingPane);
+                round = 1;
+                break;
+            case 1 :
+                settingPane.getChildren().clear();
+                round = 0;
+                break;
         }
     }
 }

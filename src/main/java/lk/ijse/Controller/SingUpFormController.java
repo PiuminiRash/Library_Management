@@ -57,11 +57,7 @@ public class SingUpFormController {
 
     @FXML
     void btnSingInOnAction(ActionEvent event) {
-        try {
-            Navigation.navigation(Rout.LOGIN,root);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        Navigation.navigation(Rout.LOGIN,root);
     }
 
     @FXML
