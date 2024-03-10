@@ -23,4 +23,6 @@ public class Book {
     private String type;
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy =  "book")
     private List<Transactions> reservations = new ArrayList<>();
+
+
 }
