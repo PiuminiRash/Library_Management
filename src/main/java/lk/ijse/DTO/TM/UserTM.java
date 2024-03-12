@@ -1,15 +1,15 @@
-package lk.ijse.DTO;
+package lk.ijse.DTO.TM;
 
 import lombok.*;
 
-@AllArgsConstructor
+@Data
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
-@Data
 @ToString
-public class CustomerDTO {
-    private String cusId;
+public class UserTM {
+    private String id;
     private String name;
     private String nic;
     private String address;

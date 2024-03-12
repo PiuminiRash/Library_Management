@@ -1,22 +1,30 @@
 package lk.ijse.Entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
+@NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
 @ToString
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
-@Table(name = "user")
+@Table(name = "customer")
 public class User {
     @Id
-    @Column(name = "mail")
-    private String mail;
-    @Column(name = "pw")
-    private String password;
+    @Column(name = "cus_id",length = 50)
+    private String id;
+    @Column(name = "cus_name")
+    private String name;
+    @Column(name = "NIC")
+    private String nic;
+    @Column(name = "address")
+    private String address;
+    @Column(name = "contact")
+    private int contact;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy =  "customer")
+    private List<Transactions> reservations = new ArrayList<>();
 }
