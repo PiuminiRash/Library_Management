@@ -15,7 +15,7 @@ import java.util.List;
 @ToString
 public class Book {
     @Id
-    @Column(name = "book_id",length = 5)
+    @Column(name = "book_id",length = 10)
     private String id;
     @Column(name = "book_name")
     private String name;
@@ -24,5 +24,9 @@ public class Book {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy =  "book")
     private List<Transactions> reservations = new ArrayList<>();
 
-
+    public Book(String id,String name,String type) {
+        this.id = id;
+        this.name = name;
+        this.type = type;
+    }
 }
