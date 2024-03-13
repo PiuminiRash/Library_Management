@@ -4,7 +4,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
@@ -16,9 +15,7 @@ import lk.ijse.Controller.util.Validation;
 import lk.ijse.DTO.BookDTO;
 import lk.ijse.DTO.TM.BookTM;
 
-import java.net.URL;
 import java.util.List;
-import java.util.ResourceBundle;
 
 public class BookFormController {
     @FXML
@@ -76,7 +73,6 @@ public class BookFormController {
     boolean id,name,type;
 
     public void initialize() {
-        initUi();
         setCellValueFactory();
         fillTable();
         setType();
@@ -100,30 +96,8 @@ public class BookFormController {
         colBookType.setCellValueFactory(new PropertyValueFactory<>("type"));
     }
 
-    private void initUi() {
-        txtBookId.clear();
-        txtBookName.clear();
-        cmbType.setValue(null);
-
-        txtBookId.setDisable(true);
-        txtBookName.setDisable(true);
-        cmbType.setDisable(true);
-
-        btnSave.setDisable(true);
-        btnUpdate.setDisable(true);
-        btnDelete.setDisable(true);
-        txtSearch.requestFocus();
-    }
-
     private void setType() {
         cmbType.getItems().setAll("Education","Novel","Tool");
-    }
-
-    @FXML
-    void btnAddOnAction(ActionEvent event) {
-        cmbType.setDisable(false);
-        btnSave.setDisable(false);
-        setBookId();
     }
 
     private void setBookId() {
@@ -135,7 +109,6 @@ public class BookFormController {
         if (bookBO.deleteBook(txtBookId.getText())) {
             new CustomAlert(Alert.AlertType.CONFIRMATION,"Delete","Deleted!","Deleted Successful!").show();
             fillTable();
-            initUi();
         } else {
             new CustomAlert(Alert.AlertType.ERROR,"Delete","Deleted!","Delete Successful").show();
         }
@@ -147,7 +120,6 @@ public class BookFormController {
             if (bookBO.saveBook(new BookDTO(txtBookId.getText(),txtBookName.getText(),cmbType.getValue()))) {
                 new CustomAlert(Alert.AlertType.CONFIRMATION,"Save","Saved!","Book Save Successful!").show();
                 fillTable();
-                initUi();
             } else {
                 new CustomAlert(Alert.AlertType.ERROR,"Save","Saved!","Save Unsuccessful!").show();
             }
@@ -160,7 +132,6 @@ public class BookFormController {
             if (bookBO.updateBook(new BookDTO(txtBookId.getText(),txtBookName.getText(),cmbType.getValue()))) {
                 new CustomAlert(Alert.AlertType.CONFIRMATION,"Update","Updated!","Update Successful!").show();
                 fillTable();
-                initUi();
             } else {
                 new CustomAlert(Alert.AlertType.ERROR,"Update","Updated","Update Unsuccessful").show();
             }
@@ -179,26 +150,6 @@ public class BookFormController {
         return true;
     }
     return false;
-    }
-
-    @FXML
-    void cmbTypeOnAction(ActionEvent event) {
-        txtBookName.requestFocus();
-    }
-
-    @FXML
-    void txtBookIdOnAction(ActionEvent event) {
-        cmbType.requestFocus();
-    }
-
-    @FXML
-    void txtBookNameOnAction(ActionEvent event) {
-        txtBookId.requestFocus();
-    }
-
-    @FXML
-    void txtSearchOnAction(ActionEvent event) {
-        btnSearch.fire();
     }
 
     @FXML
