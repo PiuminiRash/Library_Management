@@ -2,6 +2,7 @@ package lk.ijse.DTO;
 
 import lombok.*;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @NoArgsConstructor
@@ -19,7 +20,7 @@ public class TransactionDTO {
 //    private String userName;
 //    private String bookName;
 
-    public TransactionDTO(String transId,Date startDate,Date endDate,String userId,String bookId) {
+    public TransactionDTO(String transId, Date startDate, Date endDate, String userId, String bookId) {
         this.transId = transId;
         this.startDate = startDate;
         this.endDate = endDate;
