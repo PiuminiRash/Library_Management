@@ -63,15 +63,33 @@ public class BookDAOImpl implements BookDAO {
 
     @Override
     public List<Book> getAll() {
+       return session.createQuery("FROM Book").list();
+    }
+
+    @Override
+//    public Book getItem(String id) {
+//        try {
+//            Transaction transaction = session.beginTransaction();
+//            Book book = session.get(Book.class,id);
+//            transaction.commit();
+//            return book;
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            return null;
+//        } finally {
+//            session.close();
+//        }
+//    }
+    public Book getItem(String id) {
         try {
             Transaction transaction = session.beginTransaction();
-            CriteriaBuilder criteriaBuilder = (CriteriaBuilder) session.getCriteriaBuilder();
-            CriteriaQuery<Book> query = criteriaBuilder.createQuery(Book.class);
-            query.from(Book.class);
-            List<Book> resultList = session.createQuery(String.valueOf(query)).getResultList();
+            Book book = session.get(Book.class, id);
             transaction.commit();
-            return resultList;
+            return book;
         } catch (Exception e) {
+            if (session.getTransaction().isActive()) {
+                session.getTransaction().rollback();
+            }
             e.printStackTrace();
             return null;
         } finally {
@@ -79,24 +97,33 @@ public class BookDAOImpl implements BookDAO {
         }
     }
 
-    @Override
-    public Book getItem(String id) {
+//    @Override
+//    public String getNextId() {
+//        try {
+//            String newId = "B000";
+//            Transaction transaction = session.beginTransaction();
+//            List list = session.createNativeQuery("select book_id from book order by book_id desc limit 1").list();
+//            if (!list.isEmpty()) newId = (String) list.get(0);
+//            transaction.commit();
+//            session.close();
+//            return newId;
+//        } catch (HibernateException e) {
+//            e.printStackTrace();
+//            return null;
+//        }
+//    }
+@Override
+public String getNextId() {
+    try {
+        String newId = "B000";
+        Transaction transaction = session.beginTransaction();
+        List list = session.createNativeQuery("select book_id from book order by book_id desc limit 1").list();
+        if (!list.isEmpty()) newId = (String) list.get(0);
+        transaction.commit();
+        return newId;
+    } catch (HibernateException e) {
+        e.printStackTrace();
         return null;
     }
-
-    @Override
-    public String getNextId() {
-        try {
-            String newId = "B000";
-            Transaction transaction = session.beginTransaction();
-            List list = session.createNativeQuery("select book_id from book order by book_id desc limit 1").list();
-            if (!list.isEmpty()) newId = (String) list.get(0);
-            transaction.commit();
-            session.close();
-            return newId;
-        } catch (HibernateException e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
+}
 }
