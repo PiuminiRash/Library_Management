@@ -29,12 +29,13 @@ public class TransactionBOImpl implements TransactionBO {
     }
 
     @Override
-    public List<String> getAllBookId() {
-        List<String> bookIds = new ArrayList<>();
+    public List<BookDTO> getAllBookId() {
+        List<Book> bookList = bookDAO.getAll();
+        List<BookDTO> bookDTOS = new ArrayList<>();
         for (Book book : bookDAO.getAll()) {
-            bookIds.add(book.getId());
+
         }
-        return bookIds;
+        return bookDTOS;
     }
 
     @Override
@@ -103,6 +104,6 @@ public class TransactionBOImpl implements TransactionBO {
     public String getNextId() {
         String id = transactionDAO.getNextId();
         Integer newId = Integer.parseInt(id.replace("TRS","")) + 1;
-        return String.format("TRS--03d",newId);
+        return String.format("TRS%03d",newId);
     }
 }
