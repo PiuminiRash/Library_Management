@@ -1,23 +1,42 @@
 package lk.ijse.Config;
 
 import lk.ijse.Entity.Book;
-import lk.ijse.Entity.Customer;
-import lk.ijse.Entity.Transactions;
 import lk.ijse.Entity.User;
+import lk.ijse.Entity.Transactions;
+import lk.ijse.Entity.Admin;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+
+import java.io.IOException;
+import java.util.Properties;
 
 public class FactoryConfiguration {
     private static FactoryConfiguration factoryConfig;
     private final SessionFactory sessionFactory;
 
     private FactoryConfiguration() {
-        Configuration configuration = new Configuration().configure()
-                .addAnnotatedClass(User.class)
+       /* Configuration configuration = new Configuration().configure()
+                .addAnnotatedClass(Admin.class)
                 .addAnnotatedClass(Book.class)
-                .addAnnotatedClass(Customer.class)
+                .addAnnotatedClass(User.class)
                 .addAnnotatedClass(Transactions.class);
+        sessionFactory = configuration.buildSessionFactory();*/
+        Configuration configuration = new Configuration();
+        Properties properties = new Properties();
+
+        try {
+            properties.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("hibernate.properties"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        configuration.setProperties(properties);
+        configuration.addAnnotatedClass(Admin.class);
+        configuration.addAnnotatedClass(User.class);
+        configuration.addAnnotatedClass(Book.class);
+        configuration.addAnnotatedClass(Transactions.class);
+
         sessionFactory = configuration.buildSessionFactory();
     }
 
