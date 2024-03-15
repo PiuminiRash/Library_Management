@@ -87,43 +87,27 @@ public class BookDAOImpl implements BookDAO {
             transaction.commit();
             return book;
         } catch (Exception e) {
-            if (session.getTransaction().isActive()) {
-                session.getTransaction().rollback();
-            }
             e.printStackTrace();
             return null;
         } finally {
-            session.close();
+            if (session != null && session.isOpen()) {
+                session.close();
+            }
         }
     }
 
-//    @Override
-//    public String getNextId() {
-//        try {
-//            String newId = "B000";
-//            Transaction transaction = session.beginTransaction();
-//            List list = session.createNativeQuery("select book_id from book order by book_id desc limit 1").list();
-//            if (!list.isEmpty()) newId = (String) list.get(0);
-//            transaction.commit();
-//            session.close();
-//            return newId;
-//        } catch (HibernateException e) {
-//            e.printStackTrace();
-//            return null;
-//        }
-//    }
-@Override
-public String getNextId() {
-    try {
-        String newId = "B000";
-        Transaction transaction = session.beginTransaction();
-        List list = session.createNativeQuery("select book_id from book order by book_id desc limit 1").list();
-        if (!list.isEmpty()) newId = (String) list.get(0);
-        transaction.commit();
-        return newId;
-    } catch (HibernateException e) {
-        e.printStackTrace();
-        return null;
+    @Override
+    public String getNextId() {
+        try {
+            String newId = "B000";
+            Transaction transaction = session.beginTransaction();
+            List list = session.createNativeQuery("select book_id from book order by book_id desc limit 1").list();
+            if (!list.isEmpty()) newId = (String) list.get(0);
+            transaction.commit();
+          return newId;
+        } catch (HibernateException e) {
+             e.printStackTrace();
+            return null;
+        }
     }
-}
 }
