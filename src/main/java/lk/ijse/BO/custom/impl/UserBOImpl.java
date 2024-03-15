@@ -6,6 +6,7 @@ import lk.ijse.DAO.custom.UserDAO;
 import lk.ijse.DTO.UserDTO;
 import lk.ijse.Entity.User;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserBOImpl implements UserBO {
@@ -13,7 +14,13 @@ public class UserBOImpl implements UserBO {
 
     @Override
     public List<UserDTO> getAll() {
-        return null;
+        List<User> userList = userDAO.getAll();
+        List<UserDTO> userDTOS = new ArrayList<>();
+
+        for (User user : userList) {
+            userDTOS.add(new UserDTO(user.getId(),user.getName(),user.getNic(),user.getEmail(),user.getPassword()));
+        }
+        return userDTOS;
     }
 
     @Override
@@ -50,6 +57,8 @@ public class UserBOImpl implements UserBO {
 
     @Override
     public String getNextId() {
-        return null;
+        String id = userDAO.getNextId();
+        Integer newId = Integer.parseInt(id.replace("C","")) + 1;
+        return String.format("C%03d",newId);
     }
 }
