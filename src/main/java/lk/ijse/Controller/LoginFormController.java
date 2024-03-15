@@ -10,13 +10,12 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Line;
 import lk.ijse.BO.BOFactory;
-import lk.ijse.BO.custom.UserBO;
+import lk.ijse.BO.custom.AdminBO;
 import lk.ijse.Controller.util.Navigation;
 import lk.ijse.Controller.util.Rout;
 import lk.ijse.Controller.util.Validation;
-import lk.ijse.DTO.UserDTO;
+import lk.ijse.DTO.AdminDTO;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -39,7 +38,7 @@ public class LoginFormController implements Initializable {
     @FXML
     private Label lblHide;
 
-    private final UserBO userBO = (UserBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.USER);
+    private final AdminBO userBO = (AdminBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.ADMIN);
     boolean password , user ;
     public static String GlobUserName;
 
@@ -51,7 +50,7 @@ public class LoginFormController implements Initializable {
     void btnSingInOnAction(ActionEvent event) {
         validation();
         if (user && password) {
-            UserDTO isUser = userBO.getUser(new UserDTO(txtMail.getText(),txtPassword.getText()));
+            AdminDTO isUser = userBO.getUser(new AdminDTO(txtMail.getText(),txtPassword.getText()));
             if (isUser!= null) {
                 GlobUserName = txtMail.getText();
 
