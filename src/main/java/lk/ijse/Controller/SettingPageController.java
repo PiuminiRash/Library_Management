@@ -9,10 +9,10 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Line;
 import lk.ijse.BO.BOFactory;
-import lk.ijse.BO.custom.UserBO;
+import lk.ijse.BO.custom.AdminBO;
 import lk.ijse.Controller.util.CustomAlert;
 import lk.ijse.Controller.util.Validation;
-import lk.ijse.DTO.UserDTO;
+import lk.ijse.DTO.AdminDTO;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -45,7 +45,7 @@ public class SettingPageController implements Initializable {
     @FXML
     private Button btnSave;
 
-    private final UserBO userBO = (UserBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.USER);
+    private final AdminBO userBO = (AdminBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.USER);
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -76,7 +76,7 @@ public class SettingPageController implements Initializable {
 
     @FXML
     void btnSearchOnAction(ActionEvent event) {
-        UserDTO userDTO = userBO.getUser(new UserDTO(LoginFormController.GlobUserName,txtCurrentPassword.getText()));
+        AdminDTO userDTO = userBO.getUser(new AdminDTO(LoginFormController.GlobUserName,txtCurrentPassword.getText()));
         if (!txtCurrentPassword.getText().equals("")) {
             if (userDTO.getPassword().equals((txtCurrentPassword.getText()))) {
                 txtRePassword.setDisable(false);
