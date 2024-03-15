@@ -7,7 +7,7 @@ import lk.ijse.DTO.AdminDTO;
 import lk.ijse.Entity.Admin;
 
 public class AdminBOImpl implements AdminBO {
-    AdminDAO userDAO = (AdminDAO)DAOFactory.getDaofactory().getDAO(DAOFactory.DAOTypes.USER);
+    AdminDAO userDAO = (AdminDAO)DAOFactory.getDaofactory().getDAO(DAOFactory.DAOTypes.ADMIN);
     @Override
     public boolean saveUser(AdminDTO userDTO) {
         return userDAO.save(new Admin(
