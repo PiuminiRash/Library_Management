@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table
+@Table(name = "book")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -21,6 +21,8 @@ public class Book {
     private String name;
     @Column(name = "book_type")
     private String type;
+    @Column (name = "status")
+    private String status;
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy =  "book")
     private List<Transactions> reservations = new ArrayList<>();
 

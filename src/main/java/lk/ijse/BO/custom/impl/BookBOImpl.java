@@ -12,20 +12,6 @@ import java.util.List;
 public class BookBOImpl implements BookBO {
     BookDAO bookDAO = (BookDAO) DAOFactory.getDaofactory().getDAO(DAOFactory.DAOTypes.BOOK);
 
-
-    /*@Override
-    public List<BookDTO> getAll() {
-        List<BookDTO> bookDTOS = new ArrayList<>();
-        for (Book book : bookDAO.getAll()) {
-            bookDTOS.add(new BookDTO(
-                    book.getId(),
-                    book.getName(),
-                    book.getType()
-            ));
-        }
-        return bookDTOS;
-    }
-*/
     @Override
     public List<BookDTO> getAll() {
         List<BookDTO> bookDTOS = new ArrayList<>();
