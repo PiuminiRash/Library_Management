@@ -9,11 +9,10 @@ import javafx.scene.layout.AnchorPane;
 import lk.ijse.Controller.util.Navigation;
 import lk.ijse.Controller.util.Rout;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class DashBoardFormController implements Initializable {
+public class AdminDashBoardFormController implements Initializable {
     @FXML
     private AnchorPane root;
 
