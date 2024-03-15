@@ -66,16 +66,15 @@ public class BookFormController {
     @FXML
     private Line lineBookName;
 
-    @FXML
-    private Line lineSearch;
 
     private final BookBO bookBO = (BookBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.BOOK);
     boolean id,name,type;
 
     public void initialize() {
         setCellValueFactory();
-        //fillTable();
+        fillTable();
         setType();
+        txtBookId.setText(bookBO.getNextId());
     }
 
     private void fillTable() {
@@ -110,7 +109,7 @@ public class BookFormController {
             new CustomAlert(Alert.AlertType.CONFIRMATION,"Delete","Deleted!","Deleted Successful!").show();
             fillTable();
         } else {
-            new CustomAlert(Alert.AlertType.ERROR,"Delete","Deleted!","Delete Successful").show();
+            new CustomAlert(Alert.AlertType.ERROR,"Delete","Deleted!","Delete UnSuccessful").show();
         }
     }
 
