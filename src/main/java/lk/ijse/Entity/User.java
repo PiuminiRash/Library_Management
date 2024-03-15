@@ -12,19 +12,27 @@ import java.util.List;
 @Setter
 @ToString
 @Entity
-@Table(name = "customer")
+@Table(name = "user")
 public class User {
     @Id
-    @Column(name = "cus_id",length = 50)
+    @Column(name = "user_id",length = 50)
     private String id;
-    @Column(name = "cus_name")
+    @Column(name = "user_name")
     private String name;
-    @Column(name = "NIC")
+    @Column(name = "user_NIC")
     private String nic;
-    @Column(name = "address")
-    private String address;
-    @Column(name = "contact")
-    private int contact;
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy =  "customer")
-    private List<Transactions> reservations = new ArrayList<>();
+    @Column(name = "user_email")
+    private String email;
+    @Column(name = "user_pw")
+    private String password;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy =  "user")
+    private List<Transactions> transaction = new ArrayList<>();
+
+    public User(String id,String name,String nic,String email,String password) {
+        this.id = id;
+        this.name = name;
+        this.nic = nic;
+        this.email = email;
+        this.password = password;
+    }
 }

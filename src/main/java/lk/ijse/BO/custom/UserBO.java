@@ -7,9 +7,9 @@ import java.util.List;
 
 public interface UserBO extends SuperBO {
     List<UserDTO> getAll();
-    boolean saveCustomer(UserDTO customerDTO);
-    boolean updateCustomer(UserDTO customerDTO);
-    UserDTO getCustomer(String cusId);
-    boolean deleteCustomer(String cusId);
+    boolean saveUser(UserDTO customerDTO);
+    boolean updateUser(UserDTO customerDTO);
+    UserDTO getUser(String cusId);
+    boolean deleteUser(String cusId);
     String getNextId();
 }

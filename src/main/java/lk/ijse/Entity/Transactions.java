@@ -5,11 +5,11 @@ import lombok.*;
 
 import java.sql.Date;
 
+
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
 @Entity
 @Table(name = "transaction")
 public class Transactions {
@@ -23,11 +23,19 @@ public class Transactions {
     @Column(name = "res_status")
     private String status;
     @ManyToOne
-    @JoinColumn(name = "customer_type_id",
-            referencedColumnName = "cus_id")
-    private Customer customer;
+    @JoinColumn(name = "user_id",
+            referencedColumnName = "user_id")
+    private User user;
     @ManyToOne
     @JoinColumn(name = "book_id",
             referencedColumnName = "book_id")
     private Book book;
+
+    public Transactions(String id,Date startDate,Date endDate,Book book,User user) {
+        this.id = id;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.user = user;
+        this.book = book;
+    }
 }
