@@ -53,7 +53,7 @@ public class BookBOImpl implements BookBO {
 
     @Override
     public boolean deleteBook(String bookId) {
-        return false;
+        return bookDAO.delete(bookId);
     }
 
     @Override
