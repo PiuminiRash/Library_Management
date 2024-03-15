@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface TransactionBO extends SuperBO {
     List<TransactionDTO> getAll();
-    List<String> getAllBookId();
+    List<BookDTO> getAllBookId();
     List<String> getUserId();
     BookDTO getBook(String book);
     UserDTO getUser(String user);
