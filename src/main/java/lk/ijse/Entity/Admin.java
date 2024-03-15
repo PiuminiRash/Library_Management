@@ -12,11 +12,11 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "user")
+@Table(name = "admin")
 public class Admin {
     @Id
-    @Column(name = "mail")
+    @Column(name = "admin_mail")
     private String mail;
-    @Column(name = "pw")
+    @Column(name = "admin_pw")
     private String password;
 }
