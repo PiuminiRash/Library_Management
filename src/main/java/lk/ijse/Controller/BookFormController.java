@@ -74,7 +74,7 @@ public class BookFormController {
 
     public void initialize() {
         setCellValueFactory();
-        fillTable();
+        //fillTable();
         setType();
     }
 
@@ -123,6 +123,8 @@ public class BookFormController {
             } else {
                 new CustomAlert(Alert.AlertType.ERROR,"Save","Saved!","Save Unsuccessful!").show();
             }
+        } else if (!validation()){
+            new CustomAlert(Alert.AlertType.ERROR,"Validation","Invalid Enter Type","Invalid data Entered!!!").show();
         }
     }
 
