@@ -17,7 +17,7 @@ import lk.ijse.DTO.UserDTO;
 
 public class CustomerFormController {
     @FXML
-    private AnchorPane root;
+    private AnchorPane rootNode;
 
     @FXML
     private TextField txtSearch;

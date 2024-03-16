@@ -3,9 +3,7 @@ package lk.ijse.Controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Line;
@@ -16,6 +14,7 @@ import lk.ijse.Controller.util.Rout;
 import lk.ijse.Controller.util.Validation;
 import lk.ijse.DTO.AdminDTO;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -38,7 +37,7 @@ public class LoginFormController implements Initializable {
     @FXML
     private Label lblHide;
 
-    private final AdminBO userBO = (AdminBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.ADMIN);
+    private final AdminBO adminBO = (AdminBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.ADMIN);
     boolean password , user ;
     public static String GlobUserName;
 
@@ -50,7 +49,7 @@ public class LoginFormController implements Initializable {
     void btnSingInOnAction(ActionEvent event) {
         validation();
         if (user && password) {
-            AdminDTO isUser = userBO.getUser(new AdminDTO(txtMail.getText(),txtPassword.getText()));
+            AdminDTO isUser = adminBO.getUser(new AdminDTO(txtMail.getText(),txtPassword.getText()));
             if (isUser!= null) {
                 GlobUserName = txtMail.getText();
 
@@ -68,7 +67,31 @@ public class LoginFormController implements Initializable {
 
     @FXML
     void btnSingUpOnAction(ActionEvent event) {
-        Navigation.navigation(Rout.SIGNUP,root);
+//       Navigation.navigation(Rout.ADMIN_SIGNUP,root);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Choose one");
+        alert.setContentText("Choose an Option");
+
+        ButtonType buttonType = new ButtonType("Admin");
+        ButtonType buttonType2 = new ButtonType("User");
+
+        alert.showAndWait().ifPresent(response ->{
+            if (response == buttonType){
+               root.getChildren().clear();
+                try {
+                    Navigation.navigation(Rout.ADMIN_SIGNUP,root);
+                }catch (Exception e){
+                    throw new RuntimeException(e);
+                }
+            } else if (response == buttonType2) {
+                root.getChildren().clear();
+                try {
+                    Navigation.navigation(Rout.ADMIN_SIGNUP,root);
+                }catch (Exception e){
+                    throw new RuntimeException(e);
+                }
+            }
+        });
     }
 
     @FXML

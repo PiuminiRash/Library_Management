@@ -8,6 +8,9 @@ import lk.ijse.Controller.util.Rout;
 
 public class HomePageFormController {
     @FXML
+    private AnchorPane root;
+
+    @FXML
     private AnchorPane settingPane;
 
     private static int round=0;

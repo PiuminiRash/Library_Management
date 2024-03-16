@@ -4,6 +4,7 @@ import javafx.scene.control.Alert;
 import lk.ijse.Config.FactoryConfiguration;
 import lk.ijse.DAO.custom.BookDAO;
 import lk.ijse.Entity.Book;
+import lk.ijse.Entity.User;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -67,32 +68,17 @@ public class BookDAOImpl implements BookDAO {
     }
 
     @Override
-//    public Book getItem(String id) {
-//        try {
-//            Transaction transaction = session.beginTransaction();
-//            Book book = session.get(Book.class,id);
-//            transaction.commit();
-//            return book;
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            return null;
-//        } finally {
-//            session.close();
-//        }
-//    }
     public Book getItem(String id) {
         try {
             Transaction transaction = session.beginTransaction();
-            Book book = session.get(Book.class, id);
+            Book book = session.get(Book.class,id);
             transaction.commit();
             return book;
         } catch (Exception e) {
             e.printStackTrace();
             return null;
         } finally {
-            if (session != null && session.isOpen()) {
-                session.close();
-            }
+            session.close();
         }
     }
 
