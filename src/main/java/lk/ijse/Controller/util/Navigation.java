@@ -19,8 +19,8 @@ public class Navigation {
                 case LOGIN:
                     initUi("loginform.fxml");
                     break;
-                case SIGNUP:
-                    initUi("signupform.fxml");
+                case ADMIN_SIGNUP:
+                    initUi("singupform.fxml");
                     break;
                 case DASHBOARD:
                     initUi("dashboardform.fxml");
