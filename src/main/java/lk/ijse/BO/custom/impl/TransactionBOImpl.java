@@ -29,13 +29,12 @@ public class TransactionBOImpl implements TransactionBO {
     }
 
     @Override
-    public List<BookDTO> getAllBookId() {
-        List<Book> bookList = bookDAO.getAll();
-        List<BookDTO> bookDTOS = new ArrayList<>();
+    public List<String> getBookId() {
+        List<String> bookIds = new ArrayList<>();
         for (Book book : bookDAO.getAll()) {
-
+            bookIds.add(book.getId());
         }
-        return bookDTOS;
+        return bookIds;
     }
 
     @Override
@@ -70,21 +69,16 @@ public class TransactionBOImpl implements TransactionBO {
     }
 
     @Override
-    public boolean saveTransaction(TransactionDTO transactionDTO) {
-        User user = userDAO.getItem(transactionDTO.getUserId());
-        Book book = bookDAO.getItem(transactionDTO.getBookId());
-        book.setStatus("Not Available");
-
-        if (bookDAO.update(book)) {
-            return transactionDAO.save(new Transactions(
-                    transactionDTO.getTransId(),
-                    (Date) transactionDTO.getStartDate(),
-                    (Date) transactionDTO.getEndDate(),
-                    book,
-                    user
-            ));
-        }
-        return false;
+    public boolean saveTransaction(TransactionDTO transactionDTO,Book bookDTO,User userDTO) {
+        return transactionDAO.saveTrans(new Transactions(
+                    transactionDTO.getTransId(), (Date) transactionDTO.getStartDate(), (Date) transactionDTO.getEndDate(),transactionDTO.getBookId(),transactionDTO.getUserId()
+                ),
+                new Book(
+                        bookDTO.getId(),bookDTO.getName(),bookDTO.getType()
+                )
+                ,new User(
+                        userDTO.getId(), userDTO.getName(),userDTO.getNic(), userDTO.getEmail(), userDTO.getPassword()
+                ));
     }
 
     @Override

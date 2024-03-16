@@ -3,12 +3,15 @@ package lk.ijse.DAO.custom.impl;
 import javafx.scene.control.Alert;
 import lk.ijse.Config.FactoryConfiguration;
 import lk.ijse.DAO.custom.TransactionDAO;
+import lk.ijse.Entity.Book;
 import lk.ijse.Entity.Transactions;
+import lk.ijse.Entity.User;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class TransactionDAOImpl implements TransactionDAO {
@@ -92,6 +95,39 @@ public class TransactionDAOImpl implements TransactionDAO {
         } catch (HibernateException e) {
             e.printStackTrace();
             return null;
+        }
+    }
+
+    @Override
+    public boolean saveTrans(Transactions transactionsEntity, Book bookEntity, User userEntity) {
+        String status = "Not Available";
+        Transaction transaction = null;
+
+        try{
+            transaction = session.beginTransaction();
+            List<Transactions> transactions = new ArrayList<>();
+
+            transactionsEntity.setUser(userEntity);
+            userEntity.setTransaction(transactions);
+
+            transactionsEntity.setBook(bookEntity);
+            bookEntity.setTransactions(transactions);
+
+            transactions.add(transactionsEntity);
+            session.save(transactionsEntity);
+
+            session.createQuery("UPDATE Book b SET b.status = :status WHERE b.id = : book_id")
+                    .setParameter("status",status).setParameter("book_id",bookEntity.getId()).executeUpdate();
+            transaction.commit();
+            return true;
+        } catch (Exception e) {
+            if (transaction!=null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+            return false;
+        } finally {
+            session.close();
         }
     }
 }
