@@ -1,10 +1,7 @@
 package lk.ijse.Controller.util;
 
 import animatefx.animation.Shake;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 
@@ -69,7 +66,8 @@ public class Validation {
     }
 
     public static void defaultLine(Line line) {
-        line.setStroke(Color.BLACK);
+        line.setStroke(Color.RED);
+        new CustomAlert(Alert.AlertType.ERROR,"Validation","Invalid Enter Type","Data Enter Invalided!!!").show();
     }
 
     public static boolean dateValidation(DatePicker date) {
