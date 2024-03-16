@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="rootNode" prefHeight="800.0" prefWidth="1241.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.Controller.CustomerFormController">
+    <children>
+        <AnchorPane prefHeight="90.0" prefWidth="1241.0" style="-fx-background-color: #f6e58d;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <Text layoutX="362.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CUSTOMER MANAGEMENT">
+                    <font>
+                        <Font name="System Bold" size="40.0" />
+                    </font>
+                </Text>
+            </children>
+        </AnchorPane>
+        <AnchorPane layoutY="600.0" prefHeight="15.0" prefWidth="1241.0" style="-fx-background-color: #f6e58d;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+        <TextField fx:id="txtSearch" layoutX="889.0" layoutY="117.0" onAction="#txtSearchOnAction" prefHeight="53.0" prefWidth="321.0" />
+        <Button fx:id="btnSearch" layoutX="1140.0" layoutY="118.0" mnemonicParsing="false" onAction="#btnSearchOnAction" prefHeight="53.0" prefWidth="69.0">
+            <graphic>
+                <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" />
+            </graphic>
+        </Button>
+        <Text layoutX="71.0" layoutY="220.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customer Id :">
+            <font>
+                <Font name="System Bold" size="18.0" />
+            </font>
+        </Text>
+        <Text layoutX="547.0" layoutY="220.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customer Name :">
+            <font>
+                <Font name="System Bold" size="18.0" />
+            </font>
+        </Text>
+        <Text layoutX="71.0" layoutY="314.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NIC :">
+            <font>
+                <Font name="System Bold" size="18.0" />
+            </font>
+        </Text>
+        <TextField fx:id="txtId" layoutX="196.0" layoutY="196.0" prefHeight="31.0" prefWidth="173.0" />
+        <TextField fx:id="txtName" layoutX="707.0" layoutY="201.0" prefHeight="31.0" prefWidth="289.0" />
+        <TableView fx:id="tblUser" layoutX="71.0" layoutY="409.0" prefHeight="353.0" prefWidth="1132.0">
+            <columns>
+                <TableColumn fx:id="colId" prefWidth="181.0" text="Customer Id" />
+                <TableColumn fx:id="colName" prefWidth="380.0" text="Customer Name" />
+                <TableColumn fx:id="colNIC" prefWidth="277.0" text="NIC" />
+            <TableColumn fx:id="colEmail" prefWidth="293.0" text="Email" />
+            </columns>
+        </TableView>
+        <Button fx:id="btnSave" layoutX="838.0" layoutY="354.0" mnemonicParsing="false" onAction="#btnSaveOnAction" text="Save" />
+        <Button fx:id="btnUpdate" layoutX="910.0" layoutY="354.0" mnemonicParsing="false" onAction="#btnUpdateOnAction" text="Update" />
+        <Button fx:id="btnDelete" layoutX="996.0" layoutY="354.0" mnemonicParsing="false" onAction="#btnDeleteOnAction" text="Delete" />
+        <Line fx:id="lineId" endX="72.0" layoutX="296.0" layoutY="228.0" startX="-100.0" />
+        <Line fx:id="lineName" endX="188.0" layoutX="806.0" layoutY="233.0" startX="-100.0" />
+      <TextField fx:id="txtNIC" layoutX="120.0" layoutY="292.0" prefHeight="31.0" prefWidth="173.0" />
+      <Line fx:id="lineNIC" endX="71.0" endY="-1.0" layoutX="222.0" layoutY="324.0" startX="-100.0" />
+      <Text layoutX="407.0" layoutY="314.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email :">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Text>
+      <TextField fx:id="txtEmail" layoutX="476.0" layoutY="292.0" prefHeight="31.0" prefWidth="289.0" />
+      <Line fx:id="lineEmail" endX="188.0" endY="-1.0" layoutX="578.0" layoutY="323.0" startX="-100.0" />
+      <Text layoutX="850.0" layoutY="313.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password :">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Text>
+      <PasswordField fx:id="txtPassword" layoutX="949.0" layoutY="293.0" prefHeight="31.0" prefWidth="246.0" />
+      <Line fx:id="lineEmail1" endX="145.0" endY="-1.0" layoutX="1050.0" layoutY="325.0" startX="-100.0" />
+    </children>
+</AnchorPane>

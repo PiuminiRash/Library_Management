@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<?import javafx.scene.control.PasswordField?>
+<AnchorPane fx:id="SettingPane" prefHeight="630.0" prefWidth="361.0" style="-fx-background-color: #f6e58d;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.Controller.SettingPageController">
+   <children>
+      <Text layoutX="46.0" layoutY="93.0" strokeType="OUTSIDE" strokeWidth="0.0" text="S E T T I N G">
+         <font>
+            <Font name="System Bold" size="47.0" />
+         </font>
+      </Text>
+      <Text layoutX="32.0" layoutY="176.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Current Password " />
+      <Line fx:id="lineCurrentPassword" endX="100.0" layoutX="180.0" layoutY="230.0" startX="-100.0" AnchorPane.leftAnchor="79.5" />
+      <Button id="button" fx:id="btnSearch" layoutX="280.0" layoutY="181.0" mnemonicParsing="false" onAction="#btnSearchOnAction" prefHeight="48.0" prefWidth="46.0" stylesheets="@../Style/style.css">
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Assets/search-interface-symbol%201.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Line fx:id="lineNewPassword" endX="140.0" layoutX="186.0" layoutY="352.0" startX="-100.0" AnchorPane.leftAnchor="85.5" />
+      <Text layoutX="30.0" layoutY="295.0" strokeType="OUTSIDE" strokeWidth="0.0" text="New Password " />
+      <Text layoutX="30.0" layoutY="438.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Re Enter Password " />
+      <PasswordField fx:id="txtCurrentPassword" layoutX="80.0" layoutY="198.0" onAction="#txtCurrentPasswordOnAction" prefHeight="31.0" prefWidth="201.0" promptText="Enter Current Password" style="-fx-background-color: #f6e58d;" />
+      <Line fx:id="lineReEnter" endX="137.0" layoutX="188.0" layoutY="494.0" startX="-100.0" AnchorPane.leftAnchor="87.5" />
+      <PasswordField fx:id="txtNewPassword" layoutX="84.0" layoutY="319.0" prefHeight="31.0" prefWidth="241.0" promptText="Enter Current Password" style="-fx-background-color: #f6e58d;" />
+      <Button id="button" fx:id="btnSave" layoutX="134.0" layoutY="548.0" mnemonicParsing="false" onAction="#btnSaveOnAction" prefHeight="31.0" prefWidth="94.0" stylesheets="@../Style/style.css" text="Save">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></Button>
+      <PasswordField fx:id="txtRePassword" layoutX="88.0" layoutY="461.0" onAction="#txtRePasswordOnAction" prefHeight="31.0" prefWidth="238.0" promptText="Enter Current Password" style="-fx-background-color: #f6e58d;" />
+      <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="33.0" layoutY="186.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Assets/Account.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="33.0" layoutY="312.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Assets/password.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="33.0" layoutY="453.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Assets/password.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="285.0" layoutY="311.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Assets/View.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="290.0" layoutY="453.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Assets/View.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
