@@ -1,22 +1,26 @@
 package lk.ijse.Controller;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import lk.ijse.BO.BOFactory;
+import lk.ijse.BO.custom.BookBO;
 import lk.ijse.BO.custom.TransactionBO;
+import lk.ijse.BO.custom.UserBO;
 import lk.ijse.Controller.util.CustomAlert;
 import lk.ijse.DTO.BookDTO;
 import lk.ijse.DTO.TransactionDTO;
 import lk.ijse.DTO.UserDTO;
+import lk.ijse.Entity.User;
 
 import java.sql.Date;
 
 public class TransactionFormController {
-
     @FXML
-    private AnchorPane root;
+    private AnchorPane rootNode;
 
     @FXML
     private TextField txtSearch;
@@ -58,12 +62,14 @@ public class TransactionFormController {
     private DatePicker Datedate;
 
     private final TransactionBO transactionBO = (TransactionBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.TRANSACTION);
+    private final UserBO userBO = (UserBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.USER);
+    private final BookBO bookBO = (BookBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.BOOK);
     boolean id,startDate,endDate,bookId,userId,status;
 
     @FXML
     void initialize(){
-        cmbBookIdOnAction();
-        cmbUserIdOnAction();
+        setBookId();
+        setUserId();
     }
 
     @FXML
@@ -77,36 +83,53 @@ public class TransactionFormController {
 
     @FXML
     void btnSaveOnAction(ActionEvent event) {
-        if (transactionBO.saveTransaction(new TransactionDTO(txtTransId.getText(), Date.valueOf(lblDate.getText()),Date.valueOf(Datedate.getValue()),cmbUserId.getValue(),cmbBookId.getValue()))) {
-            new CustomAlert(Alert.AlertType.CONFIRMATION,"Save","Saved!!","Save Successful!!").show();
-        } else {
-            new CustomAlert(Alert.AlertType.ERROR,"Save","Not Saved!!","Saved Unsuccessful").show();
+        UserDTO userDTO = null;
+        BookDTO bookDTO = null;
+
+        String id = txtTransId.getText();
+        String startDate = lblDate.getText();
+        String endDate = String.valueOf(Datedate.getValue());
+        String user = cmbUserId.getValue();
+        String book = cmbBookId.getValue();
+
+        for (UserDTO users : userBO.getAll()) {
+            userDTO = new UserDTO(users.getId(),users.getName(),users.getNic(),users.getEmail(),users.getPassword());
+        }
+
+        for (BookDTO books : bookBO.getAll()) {
+            bookDTO = new BookDTO(books.getId(),books.getName(),books.getType());
         }
     }
 
     @FXML
     void btnUpdateOnAction(ActionEvent event) {
-        if (transactionBO.updateTransaction(new TransactionDTO(txtTransId.getText(),Date.valueOf(lblDate.getText()),Date.valueOf(Datedate.getValue()),cmbUserId.getValue(),cmbBookId.getValue()))) {
-            new CustomAlert(Alert.AlertType.CONFIRMATION,"Update","Updated!!","Update Successful!!").show();
-        } else {
-            new CustomAlert(Alert.AlertType.ERROR,"Update","Not Updated!!","Updated Unsuccessful").show();
-        }
     }
 
     public void btnSearchOnAction(ActionEvent actionEvent) {
     }
 
     @FXML
-    void cmbBookIdOnAction() {
+    void cmbBookIdOnAction(ActionEvent actionEvent) {
         BookDTO bookDTO = transactionBO.getBook(cmbBookId.getValue());
         txtBookName.setText(bookDTO.getName());
     }
 
     @FXML
-    void cmbUserIdOnAction() {
+    void cmbUserIdOnAction(ActionEvent actionEvent) {
         UserDTO userDTO = transactionBO.getUser(cmbUserId.getValue());
         txtUserName.setText(userDTO.getName());
     }
 
+    private void setBookId() {
+        ObservableList<String> bookIdList = FXCollections.observableArrayList();
+        bookIdList.addAll(transactionBO.getBookId());
+        cmbBookId.setItems(bookIdList);
+    }
+
+    private void setUserId() {
+        ObservableList<String> userIdList = FXCollections.observableArrayList();
+        userIdList.addAll(transactionBO.getUserId());
+        cmbUserId.setItems(userIdList);
+    }
 }
 

@@ -24,7 +24,7 @@ public class Book {
     @Column (name = "status")
     private String status;
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy =  "book")
-    private List<Transactions> reservations = new ArrayList<>();
+    private List<Transactions> transactions = new ArrayList<>();
 
     public Book(String id,String name,String type) {
         this.id = id;
