@@ -7,10 +7,10 @@ import lk.ijse.DTO.AdminDTO;
 import lk.ijse.Entity.Admin;
 
 public class AdminBOImpl implements AdminBO {
-    AdminDAO userDAO = (AdminDAO)DAOFactory.getDaofactory().getDAO(DAOFactory.DAOTypes.ADMIN);
+    AdminDAO adminDAO = (AdminDAO)DAOFactory.getDaofactory().getDAO(DAOFactory.DAOTypes.ADMIN);
     @Override
     public boolean saveUser(AdminDTO userDTO) {
-        return userDAO.save(new Admin(
+        return adminDAO.save(new Admin(
                 userDTO.getMail(),
                 userDTO.getPassword()
         ));
@@ -18,7 +18,7 @@ public class AdminBOImpl implements AdminBO {
 
     @Override
     public AdminDTO getUser(AdminDTO userDTO) {
-        Admin user = userDAO.getItem(userDTO.getMail());
+        Admin user = adminDAO.getItem(userDTO.getMail());
         if (user!=null) {
            return new AdminDTO(user.getMail(),user.getPassword());
         } else {
@@ -28,7 +28,7 @@ public class AdminBOImpl implements AdminBO {
 
     @Override
     public boolean updateUser(AdminDTO userDTO) {
-        return userDAO.update(new Admin(
+        return adminDAO.update(new Admin(
                 userDTO.getMail(),
                 userDTO.getPassword()
         ));
