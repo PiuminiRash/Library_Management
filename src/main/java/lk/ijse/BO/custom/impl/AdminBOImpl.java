@@ -1,5 +1,6 @@
 package lk.ijse.BO.custom.impl;
 
+import javafx.scene.control.Alert;
 import lk.ijse.BO.custom.AdminBO;
 import lk.ijse.DAO.DAOFactory;
 import lk.ijse.DAO.custom.AdminDAO;
@@ -9,7 +10,7 @@ import lk.ijse.Entity.Admin;
 public class AdminBOImpl implements AdminBO {
     AdminDAO adminDAO = (AdminDAO)DAOFactory.getDaofactory().getDAO(DAOFactory.DAOTypes.ADMIN);
     @Override
-    public boolean saveUser(AdminDTO userDTO) {
+    public boolean saveAdmin(AdminDTO userDTO) {
         return adminDAO.save(new Admin(
                 userDTO.getMail(),
                 userDTO.getPassword()
@@ -17,17 +18,23 @@ public class AdminBOImpl implements AdminBO {
     }
 
     @Override
-    public AdminDTO getUser(AdminDTO userDTO) {
-        Admin user = adminDAO.getItem(userDTO.getMail());
-        if (user!=null) {
-           return new AdminDTO(user.getMail(),user.getPassword());
+    public AdminDTO getAdmin(String mail) {
+        Admin admin = adminDAO.getItem(mail);
+        if (admin!=null) {
+            return new AdminDTO(admin.getMail(),admin.getPassword());
         } else {
-            return null;
+            new Alert(Alert.AlertType.ERROR).show();
         }
+        return null;
     }
 
     @Override
-    public boolean updateUser(AdminDTO userDTO) {
+    public AdminDTO getAdmin(AdminDTO adminDTO) {
+        return null;
+    }
+
+    @Override
+    public boolean updateAdmin(AdminDTO userDTO) {
         return adminDAO.update(new Admin(
                 userDTO.getMail(),
                 userDTO.getPassword()

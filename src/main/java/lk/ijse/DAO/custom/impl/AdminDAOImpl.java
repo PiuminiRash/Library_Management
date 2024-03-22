@@ -63,8 +63,6 @@ public class AdminDAOImpl implements AdminDAO {
         } catch (Exception e) {
             e.printStackTrace();
             return null;
-        } finally {
-            session.close();
         }
     }
 }

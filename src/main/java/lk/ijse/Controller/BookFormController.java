@@ -22,10 +22,10 @@ public class BookFormController {
     private AnchorPane rootNode;
 
     @FXML
-    private Button btnAdd;
+    private TextField txtSearch;
 
     @FXML
-    private TextField txtSearch;
+    private Button btnSearch;
 
     @FXML
     private TextField txtBookId;
@@ -34,7 +34,7 @@ public class BookFormController {
     private TextField txtBookName;
 
     @FXML
-    private ComboBox<String> cmbType;
+    private ComboBox<String> cmbGerne;
 
     @FXML
     private TableView<BookTM> tblBook;
@@ -43,10 +43,13 @@ public class BookFormController {
     private TableColumn<?, ?> colBookId;
 
     @FXML
-    private TableColumn<?, ?> colBookName;
+    private TableColumn<?, ?> colTitle;
 
     @FXML
-    private TableColumn<?, ?> colBookType;
+    private TableColumn<?, ?> colAuthor;
+
+    @FXML
+    private TableColumn<?, ?> colGerne;
 
     @FXML
     private Button btnSave;
@@ -58,17 +61,19 @@ public class BookFormController {
     private Button btnDelete;
 
     @FXML
-    private Button btnSearch;
-
-    @FXML
     private Line lineBookId;
 
     @FXML
     private Line lineBookName;
 
+    @FXML
+    private TextField txtAuthor;
+
+    @FXML
+    private Line lineAuthor;
 
     private final BookBO bookBO = (BookBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.BOOK);
-    boolean id,name,type;
+    boolean name;
 
     public void initialize() {
         setCellValueFactory();
@@ -77,13 +82,18 @@ public class BookFormController {
         txtBookId.setText(bookBO.getNextId());
     }
 
+    public void loadBranch(String branch) {
+
+    }
+
     private void fillTable() {
         ObservableList<BookTM> bookTM = FXCollections.observableArrayList();
         for (BookDTO bookDTO : bookBO.getAll()) {
             bookTM.add(new BookTM(
                     bookDTO.getId(),
-                    bookDTO.getName(),
-                    bookDTO.getType()
+                    bookDTO.getTitle(),
+                    bookDTO.getAuthor(),
+                    bookDTO.getGenre()
             ));
         }
         tblBook.setItems(bookTM);
@@ -91,16 +101,13 @@ public class BookFormController {
 
     private void setCellValueFactory() {
         colBookId.setCellValueFactory(new PropertyValueFactory<>("id"));
-        colBookName.setCellValueFactory(new PropertyValueFactory<>("name"));
-        colBookType.setCellValueFactory(new PropertyValueFactory<>("type"));
+        colTitle.setCellValueFactory(new PropertyValueFactory<>("title"));
+        colAuthor.setCellValueFactory(new PropertyValueFactory<>("author"));
+        colGerne.setCellValueFactory(new PropertyValueFactory<>("gerne"));
     }
 
     private void setType() {
-        cmbType.getItems().setAll("Education","Novel","Tool");
-    }
-
-    private void setBookId() {
-        txtBookId.setText(bookBO.getNextId());
+        cmbGerne.getItems().setAll("Education", "PaperBook", "Romance", "Tool");
     }
 
     @FXML
@@ -116,7 +123,7 @@ public class BookFormController {
     @FXML
     void btnSaveOnAction(ActionEvent event) {
         if (validation()) {
-            if (bookBO.saveBook(new BookDTO(txtBookId.getText(),txtBookName.getText(),cmbType.getValue()))) {
+            if (bookBO.saveBook(new BookDTO(txtBookId.getText(),txtBookName.getText(),txtAuthor.getText(),cmbGerne.getValue()))) {
                 new CustomAlert(Alert.AlertType.CONFIRMATION,"Save","Saved!","Book Save Successful!").show();
                 fillTable();
             } else {
@@ -130,7 +137,7 @@ public class BookFormController {
     @FXML
     void btnUpdateOnAction(ActionEvent event) {
         if (validation()) {
-            if (bookBO.updateBook(new BookDTO(txtBookId.getText(),txtBookName.getText(),cmbType.getValue()))) {
+            if (bookBO.updateBook(new BookDTO(txtBookId.getText(),txtBookName.getText(),txtAuthor.getText(),cmbGerne.getValue()))) {
                 new CustomAlert(Alert.AlertType.CONFIRMATION,"Update","Updated!","Update Successful!").show();
                 fillTable();
             } else {
@@ -140,17 +147,13 @@ public class BookFormController {
     }
 
     private boolean validation() {
-    id = false;
-    name = false;
-    type = false;
-    id = Validation.txtValidation(txtBookId,lineBookId);
-    name = Validation.txtValidation(txtBookName,lineBookName);
-    type = Validation.cmbValidation(cmbType);
-
-    if (id  && name && type) {
-        return true;
-    }
-    return false;
+//    name = false;
+//    name = Validation.txtValidation(txtBookName,lineBookName);
+//
+//    if (name) {
+//        return true;
+//    }
+    return true;
     }
 
     @FXML
@@ -163,11 +166,13 @@ public class BookFormController {
             btnDelete.setDisable(false);
             txtBookId.setDisable(true);
             txtBookName.setDisable(false);
-            cmbType.setDisable(false);
+            txtAuthor.setDisable(false);
+            cmbGerne.setDisable(false);
 
             txtBookId.setText(bookDTO.getId());
-            txtBookName.setText(bookDTO.getName());
-            cmbType.getSelectionModel().select(getCmbIndex(cmbType,bookDTO.getType()));
+            txtBookName.setText(bookDTO.getTitle());
+            txtAuthor.setText(bookDTO.getAuthor());
+            cmbGerne.getSelectionModel().select(getCmbIndex(cmbGerne,bookDTO.getGenre()));
         } else {
             new CustomAlert(Alert.AlertType.ERROR,"Error","Invalid","Invalid Book Id!").show();
         }

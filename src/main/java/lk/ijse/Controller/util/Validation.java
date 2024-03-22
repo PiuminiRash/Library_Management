@@ -8,7 +8,7 @@ import javafx.scene.shape.Line;
 public class Validation {
     static Shake shake;
     public static boolean txtValidation (TextField txt , Line line) {
-        if (txt.getText().matches("^$")) {
+        if (txt.getText().matches("^\\p{L}+\\s\\p{L}+$")) {
             shakeLine(line);
         } else {
             defaultLine(line);
@@ -18,7 +18,7 @@ public class Validation {
     }
 
     public static boolean passwordValidation (PasswordField passwordText, Line line) {
-        if (passwordText.getText().matches("^$")) {
+        if (passwordText.getText().matches("^\\d{4}$")) {
             shakeLine(line);
         } else {
             defaultLine(line);

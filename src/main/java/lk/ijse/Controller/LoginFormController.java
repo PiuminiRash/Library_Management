@@ -2,6 +2,7 @@ package lk.ijse.Controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
@@ -9,10 +10,12 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Line;
 import lk.ijse.BO.BOFactory;
 import lk.ijse.BO.custom.AdminBO;
+import lk.ijse.BO.custom.UserBO;
 import lk.ijse.Controller.util.Navigation;
 import lk.ijse.Controller.util.Rout;
 import lk.ijse.Controller.util.Validation;
 import lk.ijse.DTO.AdminDTO;
+import lk.ijse.DTO.UserDTO;
 
 import java.io.IOException;
 import java.net.URL;
@@ -38,6 +41,8 @@ public class LoginFormController implements Initializable {
     private Label lblHide;
 
     private final AdminBO adminBO = (AdminBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.ADMIN);
+
+    private final UserBO userBO = (UserBO) BOFactory.getInstance().getBO(BOFactory.BOTypes.USER);
     boolean password , user ;
     public static String GlobUserName;
 
@@ -45,49 +50,50 @@ public class LoginFormController implements Initializable {
     public void initialize (URL url , ResourceBundle resourceBundle) {
         lblHide.setVisible(false);
     }
+
     @FXML
     void btnSingInOnAction(ActionEvent event) {
-        validation();
-        if (user && password) {
-            AdminDTO isUser = adminBO.getUser(new AdminDTO(txtMail.getText(),txtPassword.getText()));
-            if (isUser!= null) {
-                GlobUserName = txtMail.getText();
+        String mail = txtMail.getText();
+        String pw = txtPassword.getText();
 
-                if (txtPassword.getText().equals(isUser.getPassword())) {
-                    Navigation.navigation(Rout.DASHBOARD,root);
-                } else {
-                    Validation.shakeLine(linePassword);
-                }
+        AdminDTO adminDTO = adminBO.getAdmin(mail);
+        UserDTO userDTO = userBO.getUser(mail);
+
+            if (adminDTO != null && adminDTO.getMail().equals(mail) && adminDTO.getPassword().equals(pw)) {
+                // Admin login successful
+                Navigation.navigation(Rout.DASHBOARD,root);
+            } else if (userDTO != null && userDTO.getEmail().equals(mail)&& userDTO.getPassword().equals(pw)) {
+                // User login successful
+                Navigation.navigation(Rout.USER_DASHBOARD,root);
             } else {
-                Validation.shakeLine(lineEmail);
-                Validation.shakeLine(linePassword);
-            }
+                // Invalid credentials for both admin and user
         }
     }
 
     @FXML
     void btnSingUpOnAction(ActionEvent event) {
-//       Navigation.navigation(Rout.ADMIN_SIGNUP,root);
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Choose one");
-        alert.setContentText("Choose an Option");
+        alert.setContentText("Choose an option:");
 
-        ButtonType buttonType = new ButtonType("Admin");
-        ButtonType buttonType2 = new ButtonType("User");
+        ButtonType buttonTypeOne = new ButtonType("Admin");
+        ButtonType buttonTypeTwo = new ButtonType("User");
 
-        alert.showAndWait().ifPresent(response ->{
-            if (response == buttonType){
-               root.getChildren().clear();
-                try {
-                    Navigation.navigation(Rout.ADMIN_SIGNUP,root);
-                }catch (Exception e){
-                    throw new RuntimeException(e);
-                }
-            } else if (response == buttonType2) {
+        alert.getButtonTypes().setAll(buttonTypeOne, buttonTypeTwo);
+
+        alert.showAndWait().ifPresent(response -> {
+            if (response == buttonTypeOne) {
                 root.getChildren().clear();
                 try {
                     Navigation.navigation(Rout.ADMIN_SIGNUP,root);
-                }catch (Exception e){
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+            } else if (response == buttonTypeTwo) {
+                root.getChildren().clear();
+                try {
+                    Navigation.navigation(Rout.USER_SIGNUP,root);
+                } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
             }
@@ -103,6 +109,7 @@ public class LoginFormController implements Initializable {
     void imgView(MouseEvent event) {
 
     }
+
 
     private void validation() {
         password = false;

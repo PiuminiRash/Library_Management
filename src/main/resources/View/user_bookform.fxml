@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="rootNode" prefHeight="800.0" prefWidth="1241.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.Controller.UserBookController">
+    <children>
+      <ImageView fitHeight="800.0" fitWidth="1241.0" layoutX="-26.0" layoutY="125.0" pickOnBounds="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <image>
+            <Image url="@../Assets/2111.w039.n003.23B.p1.23.jpg" />
+         </image>
+      </ImageView>
+        <TableView fx:id="tblBook" layoutX="47.0" layoutY="46.0" prefHeight="710.0" prefWidth="768.0" stylesheets="@../Style/tableStyle.css">
+            <columns>
+                <TableColumn fx:id="colId" prefWidth="106.0" text="Book ID" />
+                <TableColumn fx:id="colName" prefWidth="130.0" text="Name" />
+                <TableColumn fx:id="colType" prefWidth="180.0" text="Type" />
+                <TableColumn fx:id="colAuthor" prefWidth="191.0" text="Author" />
+                <TableColumn fx:id="colStatus" prefWidth="160.0" text="Status" />
+            </columns>
+        </TableView>
+      <ImageView fitHeight="438.0" fitWidth="460.0" layoutX="780.0" layoutY="281.0" pickOnBounds="true" AnchorPane.rightAnchor="0.0">
+         <image>
+            <Image url="@../Assets/vcil_h70q_230601.jpg" />
+         </image>
+      </ImageView>
+    </children>
+</AnchorPane>

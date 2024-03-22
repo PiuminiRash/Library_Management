@@ -15,24 +15,18 @@ import java.util.List;
 @Table(name = "user")
 public class User {
     @Id
-    @Column(name = "user_id",length = 50)
-    private String id;
+    @Column(name = "email",length = 50)
+    private String email;
     @Column(name = "user_name")
     private String name;
-    @Column(name = "user_NIC")
-    private String nic;
-    @Column(name = "user_email")
-    private String email;
     @Column(name = "user_pw")
     private String password;
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy =  "user")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy =  "userList")
     private List<Transactions> transaction = new ArrayList<>();
 
-    public User(String id,String name,String nic,String email,String password) {
-        this.id = id;
-        this.name = name;
-        this.nic = nic;
+    public User(String email,String name,String password) {
         this.email = email;
+        this.name = name;
         this.password = password;
     }
 }

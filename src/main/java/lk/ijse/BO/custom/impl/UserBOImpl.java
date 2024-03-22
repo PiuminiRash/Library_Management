@@ -3,7 +3,9 @@ package lk.ijse.BO.custom.impl;
 import lk.ijse.BO.custom.UserBO;
 import lk.ijse.DAO.DAOFactory;
 import lk.ijse.DAO.custom.UserDAO;
+import lk.ijse.DTO.AdminDTO;
 import lk.ijse.DTO.UserDTO;
+import lk.ijse.Entity.Admin;
 import lk.ijse.Entity.User;
 
 import java.util.ArrayList;
@@ -18,7 +20,7 @@ public class UserBOImpl implements UserBO {
         List<UserDTO> userDTOS = new ArrayList<>();
 
         for (User user : userList) {
-            userDTOS.add(new UserDTO(user.getId(),user.getName(),user.getNic(),user.getEmail(),user.getPassword()));
+            userDTOS.add(new UserDTO(user.getEmail(),user.getName(),user.getPassword()));
         }
         return userDTOS;
     }
@@ -26,10 +28,8 @@ public class UserBOImpl implements UserBO {
     @Override
     public boolean saveUser(UserDTO userDTO) {
         return userDAO.save(new User(
-                userDTO.getId(),
-                userDTO.getName(),
-                userDTO.getNic(),
                 userDTO.getEmail(),
+                userDTO.getName(),
                 userDTO.getPassword()
                 ));
     }
@@ -37,16 +37,22 @@ public class UserBOImpl implements UserBO {
     @Override
     public boolean updateUser(UserDTO userDTO) {
         return userDAO.update(new User(
-                userDTO.getId(),
-                userDTO.getName(),
-                userDTO.getNic(),
                 userDTO.getEmail(),
+                userDTO.getName(),
                 userDTO.getPassword()
         ));
     }
 
     @Override
     public UserDTO getUser(String cusId) {
+        User user = userDAO.getItem(cusId);
+        if (user!=null) {
+            return new UserDTO(
+                    user.getEmail(),
+                    user.getName(),
+                    user.getPassword()
+            );
+        }
         return null;
     }
 

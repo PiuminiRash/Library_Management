@@ -49,7 +49,6 @@ public class SettingPageController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        initUi();
         lineCurrentPassword.requestFocus();
     }
 
@@ -76,7 +75,7 @@ public class SettingPageController implements Initializable {
 
     @FXML
     void btnSearchOnAction(ActionEvent event) {
-        AdminDTO userDTO = userBO.getUser(new AdminDTO(LoginFormController.GlobUserName,txtCurrentPassword.getText()));
+        AdminDTO userDTO = userBO.getAdmin(new AdminDTO(LoginFormController.GlobUserName,txtCurrentPassword.getText()));
         if (!txtCurrentPassword.getText().equals("")) {
             if (userDTO.getPassword().equals((txtCurrentPassword.getText()))) {
                 txtRePassword.setDisable(false);

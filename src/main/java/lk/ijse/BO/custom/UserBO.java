@@ -9,7 +9,7 @@ public interface UserBO extends SuperBO {
     List<UserDTO> getAll();
     boolean saveUser(UserDTO customerDTO);
     boolean updateUser(UserDTO customerDTO);
-    UserDTO getUser(String cusId);
+    UserDTO getUser(String mail);
     boolean deleteUser(String cusId);
     String getNextId();
 }

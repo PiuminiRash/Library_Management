@@ -4,28 +4,32 @@ import lk.ijse.Entity.Book;
 import lk.ijse.Entity.User;
 import lombok.*;
 
-import java.util.Date;
-
 @NoArgsConstructor
+@AllArgsConstructor
 @Data
 @Getter
 @Setter
 @ToString
 public class TransactionDTO {
     private String transId;
-    private Date startDate;
-    private Date endDate;
-    private User userId;
-    private Book bookId;
+    private String  startDate;
+    private String endDate;
+    private String user;
+    private String book;
     private String status;
-//    private String userName;
-//    private String bookName;
 
-    public TransactionDTO(String transId, Date startDate, Date endDate, User userId, Book bookId) {
+    public TransactionDTO(String transId,String startDate,String endDate,String status) {
         this.transId = transId;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.userId = userId;
-        this.bookId = bookId;
+        this.status = status;
+    }
+
+    public TransactionDTO(String transId,String startDate,String endDate,String user,String book) {
+        this.transId = transId;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.user = user;
+        this.book = book;
     }
 }

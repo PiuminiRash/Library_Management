@@ -47,9 +47,9 @@
                   <Image url="@../Assets/Hide.png" />
                </image>
             </ImageView>
-            <TextField fx:id="txtMail" layoutX="92.0" layoutY="197.0" prefHeight="31.0" prefWidth="225.0" />
-            <PasswordField fx:id="txtPassword" layoutX="92.0" layoutY="280.0" />
-            <JFXButton layoutX="73.0" layoutY="387.0" onAction="#btnSingInOnAction" prefHeight="31.0" prefWidth="225.0" style="-fx-background-color: #f1c40f; -fx-background-radius: 30;" text="SING IN">
+            <TextField fx:id="txtMail" layoutX="92.0" layoutY="197.0" prefHeight="31.0" prefWidth="225.0" style="-fx-background-color: transparent;" />
+            <PasswordField fx:id="txtPassword" layoutX="92.0" layoutY="280.0" style="-fx-background-color: transparent;" />
+            <JFXButton layoutX="73.0" layoutY="387.0" onAction="#btnSingInOnAction" prefHeight="31.0" prefWidth="225.0" style="-fx-background-color: #f1c40f; -fx-background-radius: 30;" stylesheets="@../Style/style.css" text="SING IN">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>

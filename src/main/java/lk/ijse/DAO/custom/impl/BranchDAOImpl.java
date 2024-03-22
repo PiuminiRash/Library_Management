@@ -1,38 +1,34 @@
 package lk.ijse.DAO.custom.impl;
 
 import lk.ijse.Config.FactoryConfiguration;
-import lk.ijse.DAO.custom.UserDAO;
-import lk.ijse.Entity.User;
+import lk.ijse.DAO.custom.BranchDAO;
+import lk.ijse.Entity.Branch;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserDAOImpl implements UserDAO {
+public class BranchDAOImpl implements BranchDAO {
     @Override
-    public boolean save(User dto) {
+    public boolean save(Branch dto) {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
-        List<User> userList = new ArrayList<>();
+        List<Branch> branchList = new ArrayList<>();
 
-        userList.add(dto);
+        branchList.add(dto);
         session.save(dto);
-
         transaction.commit();
         session.close();
         return true;
     }
 
     @Override
-    public boolean update(User dto) {
+    public boolean update(Branch dto) {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
-//        List<User> userList = new ArrayList<>();
-
         session.update(dto);
         transaction.commit();
-        session.close();
         return true;
     }
 
@@ -40,42 +36,38 @@ public class UserDAOImpl implements UserDAO {
     public boolean delete(String id) {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
-        User customer = session.get(User.class,id);
-        session.delete(customer);
+        Branch branch = session.get(Branch.class,id);
+        session.delete(branch);
         transaction.commit();
         session.close();
         return true;
     }
 
     @Override
-    public List<User> getAll() {
-        Session session = FactoryConfiguration.getInstance().getSession();
-        return session.createQuery("FROM User").list();
+    public List<Branch> getAll() {
+//        Session session = FactoryConfiguration.getInstance().getSession();
+//        return session.createQuery("FROM Branch").list();
+        return null;
     }
 
     @Override
-    public User getItem(String id) {
+    public Branch getItem(String id) {
         Session session = FactoryConfiguration.getInstance().getSession();
-        try {
-            Transaction transaction = session.beginTransaction();
-            User user = session.get(User.class,id);
-            transaction.commit();
-            return user;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
+        Transaction transaction = session.beginTransaction();
+        Branch branch = session.get(Branch.class,id);
+        transaction.commit();
+        session.close();
+        return branch;
     }
 
     @Override
     public String getNextId() {
         Session session = FactoryConfiguration.getInstance().getSession();
-        String newId = "C000";
+        String newId = "BR00";
         Transaction transaction = session.beginTransaction();
-        List list = session.createNativeQuery("select user_id from user order by user_id desc limit 1").list();
+        List list = session.createNativeQuery("select branch_id from branch order by branch_id desc limit 1").list();
         if (!list.isEmpty()) newId = (String) list.get(0);
         transaction.commit();
-        session.close();
         return newId;
     }
 }

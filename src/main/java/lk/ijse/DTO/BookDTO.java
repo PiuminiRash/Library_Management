@@ -10,6 +10,15 @@ import lombok.*;
 @ToString
 public class BookDTO {
     private String id;
-    private String name;
-    private String type;
+    private String title;
+    private String author;
+    private String  genre;
+    private String status;
+
+    public BookDTO(String id,String title,String author,String genre) {
+        this.id=id;
+        this.title= title;
+        this.author=author;
+        this.genre=genre;
+    }
 }

@@ -1,9 +1,6 @@
 package lk.ijse.Entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 
 @Getter
@@ -19,4 +16,12 @@ public class Admin {
     private String mail;
     @Column(name = "admin_pw")
     private String password;
+    @ManyToOne
+    @JoinColumn(name = "branch_id")
+    private Branch branches;
+
+    public Admin(String mail,String password) {
+        this.mail = mail;
+        this.password = password;
+    }
 }

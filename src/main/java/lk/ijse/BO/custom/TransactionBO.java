@@ -15,8 +15,13 @@ public interface TransactionBO extends SuperBO {
     List<String> getUserId();
     BookDTO getBook(String book);
     UserDTO getUser(String user);
-    boolean saveTransaction(TransactionDTO transactionDTO, Book bookDTO, User userDTO);
-    boolean updateTransaction(TransactionDTO transactionDTO);
+    boolean saveTransaction(TransactionDTO transactionDTO, BookDTO bookDTO, UserDTO userDTO);
+    boolean updateTransaction(TransactionDTO transactionDTO,BookDTO bookDTO,UserDTO userDTO);
     boolean deleteTransaction(String transactionId);
+    List<TransactionDTO> getAllTransaction();
+    TransactionDTO getTransaction(String id);
     String getNextId();
+    List<UserDTO> getAllUser();
+    List<BookDTO> getAllBook();
+    TransactionDTO getIncompleteReturn(String user);
 }

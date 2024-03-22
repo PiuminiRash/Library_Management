@@ -7,11 +7,13 @@ import lombok.*;
 @Getter
 @Setter
 @Data
-@ToString
 public class UserDTO {
-    private String id;
-    private String name;
-    private String nic;
     private String email;
+    private String name;
     private String password;
+
+    public UserDTO(String email,String password) {
+        this.email=email;
+        this.password=password;
+    }
 }

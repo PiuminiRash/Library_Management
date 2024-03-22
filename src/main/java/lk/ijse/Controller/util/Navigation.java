@@ -40,6 +40,18 @@ public class Navigation {
                 case TRANSACTION:
                     initUi("transactionform.fxml");
                     break;
+                case USER_SIGNUP:
+                    initUi("user_signup.fxml");
+                    break;
+                case USER_DASHBOARD:
+                    initUi("userdashboardform.fxml");
+                    break;
+                case USER_BOOK:
+                    initUi("user_bookform.fxml");
+                    break;
+                case USER_TRANSACTION:
+                    initUi("user_stock.fxml");
+                    break;
             }
         } catch (IOException e) {
             e.printStackTrace();

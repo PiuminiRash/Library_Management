@@ -9,6 +9,15 @@ import lombok.*;
 @ToString
 public class BookTM {
     private String id;
-    private String name;
-    private String type;
+    private String title;
+    private String author;
+    private String gerne;
+    private String status;
+
+    public BookTM(String id,String title,String author,String gerne) {
+        this.id = id;
+        this.title = title;
+        this.author = author;
+        this.gerne = gerne;
+    }
 }
